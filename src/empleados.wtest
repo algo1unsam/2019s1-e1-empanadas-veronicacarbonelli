@@ -10,3 +10,85 @@ test "sueldo de Baigorria y de Gimenez" {
 	gimenez.sueldo(12000)
 	assert.equals(12000, gimenez.sueldo())
 }
+
+
+test "1_El sueldo de Gimenez es de 15000 TotalDeuda = 0 y TotalDinero=0"{
+	assert.equals(15000, gimenez.sueldo())
+	assert.equals(0, gimenez.totalDeuda())
+	assert.equals(0, gimenez.totalDinero())
+	
+}
+
+test"2_Gimenez gasta 4000, totalDeuda =4000 y totalDinero=0"{
+	gimenez.gasto(4000)
+	assert.equals(4000, gimenez.totalDeuda())
+	assert.equals(0, gimenez.totalDinero())
+	
+}
+
+test"3_Gimenez gasta 8000, totalDeuda = 12000 y totalDinero=0"{
+	gimenez.gasto(4000)
+	assert.equals(4000, gimenez.totalDeuda())
+	assert.equals(0, gimenez.totalDinero())
+	gimenez.gasto(8000)
+	assert.equals(12000, gimenez.totalDeuda())
+	assert.equals(0, gimenez.totalDinero())
+	
+}
+
+test"4_ Gimenez cobra 15000 y paga la deuda le sobra 3000, totalDeuda=0 y totalDinero=3000"{
+	gimenez.gasto(4000)
+	assert.equals(4000, gimenez.totalDeuda())
+	gimenez.gasto(8000)
+	assert.equals(12000, gimenez.totalDeuda())
+	gimenez.cobrarSueldo()
+	assert.equals(3000, gimenez.totalDinero())
+	assert.equals(0, gimenez.totalDeuda())
+	
+	
+}
+
+test"5_Gimenez gasta 25000, cubre 3000 con el dinero que tiene y el resto es totalDeuda = 22000 totalDinero = 0"{
+	gimenez.gasto(4000)
+	assert.equals(4000, gimenez.totalDeuda())
+	gimenez.gasto(8000)
+	assert.equals(12000, gimenez.totalDeuda())
+	gimenez.cobrarSueldo() 
+	assert.equals(3000, gimenez.totalDinero())
+	assert.equals(0, gimenez.totalDeuda())
+	gimenez.gasto(25000)
+	gimenez.pagarDeuda()
+	assert.equals(22000, gimenez.totalDeuda())
+	assert.equals(0, gimenez.totalDinero())
+	
+}
+
+test"6_ Gimenez cobra 15000, paga la deuda y no alcanza totalDeuda= 7000 y totalDinero=0"{
+	gimenez.gasto(4000)
+	assert.equals(4000, gimenez.totalDeuda())
+	gimenez.gasto(8000)
+	assert.equals(12000, gimenez.totalDeuda())
+	gimenez.cobrarSueldo() 
+	assert.equals(3000, gimenez.totalDinero())
+	assert.equals(0, gimenez.totalDeuda())
+	gimenez.gasto(25000)
+	gimenez.pagarDeuda()
+	assert.equals(22000, gimenez.totalDeuda())
+	assert.equals(0, gimenez.totalDinero())
+	gimenez.cobrarSueldo()
+	assert.equals(7000, gimenez.totalDeuda())
+	assert.equals(0, gimenez.totalDinero())
+	
+test "7_ Baigorria vende 2 empanadas cobra sueldo = 1530 cantidad de empanadas vendidas vuelve a su estado inicial"	{
+	
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	assert.equals(102, baigorria.cantidadEmpanadasVendidas())
+	baigorria.cobrarSueldo()
+	assert.equals(1530, baigorria.totalCobrado())
+	assert.equals(100, baigorria.cantidadEmpanadasVendidas())
+
+	}
+	
+	
+	
